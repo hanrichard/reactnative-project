@@ -11,14 +11,14 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const initialState = [
+  const mockData = [
     {id: 1, title: 'test 1'},
     {id: 2, title: 'test 2'},
     {id: 3, title: 'test 2'},
   ];
 
   const [text, setText] = useState('');
-  const [todo, setTodo] = useState(initialState);
+  const [todo, setTodo] = useState(mockData);
   const onPressLearnMore = () => {
     setTodo([...todo, {id: todo.length + 1, title: text}]);
     setText('');
