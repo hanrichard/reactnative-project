@@ -51,17 +51,11 @@ const App = () => {
       <View style={styles.containerStyle}>
         <Text>Todo list</Text>
         <View style={styles.containerRow}>
-          <FlatList
-            data={todo}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
-        </View>
-        <View style={styles.containerRow}>
           <TextInput
             style={styles.input}
             onChangeText={onChangeText}
             value={text}
+            placeholder="add todo"
           />
         </View>
         <View style={styles.containerRow}>
@@ -69,12 +63,22 @@ const App = () => {
             <Button title="Add" onPress={onPressLearnMore} />
           </Text>
         </View>
+        <View style={styles.list}>
+          <FlatList
+            data={todo}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  list: {
+    marginBottom: 60,
+  },
   button: {
     width: 'auto',
   },
