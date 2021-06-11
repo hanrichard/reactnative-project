@@ -8,33 +8,42 @@ import {
   View,
   TextInput,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
+import uuid from 'react-native-uuid';
 
 const App = () => {
   const mockData = [
-    {id: 1, title: 'test 1'},
-    {id: 2, title: 'test 2'},
-    {id: 3, title: 'test 2'},
+    {id: uuid.v4(), title: 'test 1'},
+    {id: uuid.v4(), title: 'test 2'},
+    {id: uuid.v4(), title: 'test 2'},
   ];
 
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
   const onPressLearnMore = () => {
-    setTodo([...todo, {id: todo.length + 1, title: text}]);
+    setTodo([...todo, {id: uuid.v4(), title: text}]);
     setText('');
+  };
+
+  const onPress = val => {
+    setTodo(todo.filter(item => item.id !== val));
   };
 
   const onChangeText = value => {
     setText(value);
   };
 
-  const Item = ({title}) => (
+  const Item = ({title, id}) => (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.titleStyle}>{title}</Text>
+      <TouchableOpacity style={styles.button} onPress={() => onPress(id)}>
+        <Text>Press Here to close</Text>
+      </TouchableOpacity>
     </View>
   );
 
-  const renderItem = ({item}) => <Item title={item.title} />;
+  const renderItem = ({item}) => <Item title={item.title} id={item.id} />;
 
   return (
     <SafeAreaView>
@@ -66,6 +75,12 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+  button: {
+    width: 'auto',
+  },
+  titleStyle: {
+    marginRight: 'auto',
+  },
   containerStyle: {
     height: '100%',
     alignItems: 'center',
@@ -99,6 +114,8 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    flexDirection: 'row',
+    display: 'flex',
   },
   title: {
     fontSize: 32,
