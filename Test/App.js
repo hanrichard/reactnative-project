@@ -9,6 +9,7 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import uuid from 'react-native-uuid';
 
@@ -48,34 +49,39 @@ const App = () => {
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
-      <View style={styles.containerStyle}>
-        <Text>Todo list</Text>
-        <View style={styles.containerRow}>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="add todo"
-          />
+      <ScrollView style={styles.container}>
+        <View style={styles.containerStyle}>
+          <Text>Todo list</Text>
+          <View style={styles.containerRow}>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="add todo"
+            />
+          </View>
+          <View style={styles.containerRow}>
+            <Text>
+              <Button title="Add" onPress={onPressLearnMore} />
+            </Text>
+          </View>
+          <View style={styles.list}>
+            <FlatList
+              data={todo}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+          </View>
         </View>
-        <View style={styles.containerRow}>
-          <Text>
-            <Button title="Add" onPress={onPressLearnMore} />
-          </Text>
-        </View>
-        <View style={styles.list}>
-          <FlatList
-            data={todo}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+  },
   list: {
     marginBottom: 60,
   },
