@@ -49,8 +49,8 @@ const App = () => {
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
-      <ScrollView style={styles.container}>
-        <View style={styles.containerStyle}>
+      <View>
+        <View style={styles.containerSticky}>
           <Text>Todo list</Text>
           <View style={styles.containerRow}>
             <TextInput
@@ -61,26 +61,37 @@ const App = () => {
             />
           </View>
           <View style={styles.containerRow}>
-            <Text>
-              <Button title="Add" onPress={onPressLearnMore} />
-            </Text>
-          </View>
-          <View style={styles.list}>
-            <FlatList
-              data={todo}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-            />
+            <Button title="Add" onPress={onPressLearnMore} />
           </View>
         </View>
-      </ScrollView>
+
+        <ScrollView style={styles.container}>
+          <View>
+            <View style={styles.list}>
+              <FlatList
+                data={todo}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  containerSticky: {
+    position: 'absolute',
+    top: 1,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    height: 40,
+  },
   container: {
     height: '100%',
+    paddingTop: 70,
   },
   list: {
     marginBottom: 60,
@@ -97,6 +108,7 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
+    backgroundColor: '#fff',
   },
   sectionContainer: {
     marginTop: 32,
