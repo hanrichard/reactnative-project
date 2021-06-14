@@ -22,6 +22,7 @@ const App = () => {
 
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
+
   const onPressLearnMore = () => {
     setTodo([...todo, {id: uuid.v4(), title: text}]);
     setText('');
