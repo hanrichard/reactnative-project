@@ -23,7 +23,7 @@ const App = () => {
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
 
-  const onPressLearnMore = () => {
+  const onPressToDelete = () => {
     setTodo([...todo, {id: uuid.v4(), title: text}]);
     setText('');
   };
@@ -62,7 +62,7 @@ const App = () => {
             />
           </View>
           <View style={styles.containerRow}>
-            <Button title="Add" onPress={onPressLearnMore} />
+            <Button title="Add" onPress={onPressToDelete} />
           </View>
         </View>
 
