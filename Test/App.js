@@ -13,7 +13,24 @@ import {
 } from 'react-native';
 import uuid from 'react-native-uuid';
 
-const App = () => {
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+function DetailsScreen({navigation}) {
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Details Screen</Text>
+      <Button
+        title="Go to Details... again"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+
+const HomeScreen = ({navigation}) => {
   const mockData = [
     {id: uuid.v4(), title: 'test 1'},
     {id: uuid.v4(), title: 'test 2'},
@@ -52,7 +69,6 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <View>
         <View style={styles.containerSticky}>
-          <Text>Todo list</Text>
           <View style={styles.containerRow}>
             <TextInput
               style={styles.input}
@@ -68,6 +84,11 @@ const App = () => {
 
         <ScrollView style={styles.container}>
           <View>
+            <Button
+              title="Go to Details"
+              onPress={() => navigation.navigate('Details')}
+            />
+            <Text>Todo list</Text>
             <View style={styles.list}>
               <FlatList
                 data={todo}
@@ -81,6 +102,17 @@ const App = () => {
     </SafeAreaView>
   );
 };
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   containerSticky: {
@@ -107,7 +139,7 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff',
   },
   sectionContainer: {
     paddingHorizontal: 24,
