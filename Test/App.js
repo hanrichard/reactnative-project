@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   Button,
@@ -18,13 +19,23 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-function DetailsScreen({navigation}) {
+function DetailsScreen({navigation, route}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Details Screen</Text>
       <Button
         title="Go to Details... again"
         onPress={() => navigation.navigate('Details')}
+      />
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button
+        title="Go back to first screen in stack"
+        onPress={() => navigation.popToTop()}
+      />
+
+      <Button
+        title="Go to Details... again"
+        onPress={() => navigation.push('Details')}
       />
     </View>
   );
@@ -86,7 +97,12 @@ const HomeScreen = ({navigation}) => {
           <View>
             <Button
               title="Go to Details"
-              onPress={() => navigation.navigate('Details')}
+              onPress={() => {
+                navigation.navigate('Details', {
+                  itemId: 86,
+                  otherParam: 'anything you want here',
+                });
+              }}
             />
             <Text>Todo list</Text>
             <View style={styles.list}>
