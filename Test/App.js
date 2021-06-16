@@ -85,17 +85,15 @@ const App = () => {
 const styles = StyleSheet.create({
   containerSticky: {
     position: 'absolute',
-    top: 1,
+    bottom: 0,
     zIndex: 1,
     backgroundColor: '#fff',
-    height: 40,
+    height: 60,
+    alignItems: 'center',
+    paddingBottom: 20,
   },
   container: {
     height: '100%',
-    paddingTop: 70,
-  },
-  list: {
-    marginBottom: 60,
   },
   button: {
     width: 'auto',
@@ -109,10 +107,9 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#fff', 
   },
   sectionContainer: {
-    marginTop: 32,
     paddingHorizontal: 24,
   },
   sectionTitle: {
