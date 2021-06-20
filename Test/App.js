@@ -29,7 +29,6 @@ function DetailsScreen({navigation, route}) {
         title="Go back to first screen in stack"
         onPress={() => navigation.popToTop()}
       />
-
       <Button
         title="Go to Details... again"
         onPress={() => navigation.push('Details')}
