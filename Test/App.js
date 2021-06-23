@@ -106,6 +106,7 @@ const HomeScreen = ({navigation}) => {
                 data={todo}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
+                scrollEnabled={false}
               />
             </View>
           </View>
