@@ -11,6 +11,7 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  LogBox,
 } from 'react-native';
 import uuid from 'react-native-uuid';
 
@@ -70,6 +71,12 @@ const HomeScreen = ({navigation}) => {
   );
 
   const renderItem = ({item}) => <Item title={item.title} id={item.id} />;
+
+  React.useEffect(() => {
+    LogBox.ignoreLogs([
+      'VirtualizedLists should never be nested inside plain ScrollViews',
+    ]);
+  }, []);
 
   return (
     <SafeAreaView>
