@@ -13,7 +13,6 @@ import {
   ScrollView,
   LogBox,
   Modal,
-  Alert,
   Pressable,
 } from 'react-native';
 import uuid from 'react-native-uuid';
@@ -66,6 +65,10 @@ const HomeScreen = ({navigation}) => {
     setModalVisible(!modalVisible);
   };
 
+  const cancel = () => {
+    setModalVisible(!modalVisible);
+  };
+
   const Item = ({title, id}) => (
     <View style={styles.item}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -90,7 +93,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.containerSticky}>
           <View style={styles.containerRow}>
             <Pressable
-              style={[styles.button, styles.buttonOpen]}
+              style={[styles.button, styles.buttonOpen, styles.buttonContainer]}
               onPress={() => setModalVisible(true)}>
               <Text style={styles.textStyle}>Add to list</Text>
             </Pressable>
@@ -137,6 +140,11 @@ const HomeScreen = ({navigation}) => {
               onPress={hideModal}>
               <Text style={styles.textStyle}>Add</Text>
             </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={cancel}>
+              <Text style={styles.textStyle}>Cancel</Text>
+            </Pressable>
           </View>
         </View>
       </Modal>
@@ -156,6 +164,10 @@ function App() {
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: 'grey',
+    width: '100%',
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -202,13 +214,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: 1,
-    backgroundColor: '#fff',
-    height: 60,
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   container: {
     height: '100%',
+    paddingBottom: 200,
   },
   titleStyle: {
     marginRight: 'auto',
@@ -251,6 +263,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  list: {
+    paddingBottom: 50,
   },
 });
 
