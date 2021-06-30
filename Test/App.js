@@ -22,7 +22,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-function DetailsScreen({navigation, route}) {
+const DetailsScreen = ({navigation, route}) => {
   console.log(route);
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -38,7 +38,7 @@ function DetailsScreen({navigation, route}) {
       />
     </View>
   );
-}
+};
 
 const HomeScreen = ({navigation}) => {
   const mockData = [
@@ -111,7 +111,9 @@ const HomeScreen = ({navigation}) => {
                 });
               }}
             />
-            <Text>Todo list</Text>
+            <View style={styles.listHeading}>
+              <Text style={styles.listHeadingText}>Todo list</Text>
+            </View>
             <View style={styles.list}>
               <FlatList
                 data={todo}
@@ -135,16 +137,18 @@ const HomeScreen = ({navigation}) => {
                 placeholder="add todo"
               />
             </View>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={hideModal}>
-              <Text style={styles.textStyle}>Add</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={cancel}>
-              <Text style={styles.textStyle}>Cancel</Text>
-            </Pressable>
+            <View style={styles.buttonsContainer}>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={hideModal}>
+                <Text style={styles.textStyle}>Add</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={cancel}>
+                <Text style={styles.textStyle}>Cancel</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
@@ -152,7 +156,7 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -161,7 +165,7 @@ function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -266,6 +270,16 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingBottom: 50,
+  },
+  listHeading: {
+    alignItems: 'center',
+  },
+  listHeadingText: {
+    fontSize: 20,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
   },
 });
 
