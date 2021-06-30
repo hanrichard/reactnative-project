@@ -12,6 +12,9 @@ import {
   TouchableOpacity,
   ScrollView,
   LogBox,
+  Modal,
+  Alert,
+  Pressable,
 } from 'react-native';
 import uuid from 'react-native-uuid';
 
@@ -47,11 +50,7 @@ const HomeScreen = ({navigation}) => {
 
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
-
-  const onPressToDelete = () => {
-    setTodo([...todo, {id: uuid.v4(), title: text}]);
-    setText('');
-  };
+  const [modalVisible, setModalVisible] = useState(false);
 
   const onPress = val => {
     setTodo(todo.filter(item => item.id !== val));
@@ -59,6 +58,12 @@ const HomeScreen = ({navigation}) => {
 
   const onChangeText = value => {
     setText(value);
+  };
+
+  const hideModal = () => {
+    setTodo([...todo, {id: uuid.v4(), title: text}]);
+    setText('');
+    setModalVisible(!modalVisible);
   };
 
   const Item = ({title, id}) => (
@@ -84,15 +89,11 @@ const HomeScreen = ({navigation}) => {
       <View>
         <View style={styles.containerSticky}>
           <View style={styles.containerRow}>
-            <TextInput
-              style={styles.input}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="add todo"
-            />
-          </View>
-          <View style={styles.containerRow}>
-            <Button title="Add" onPress={onPressToDelete} />
+            <Pressable
+              style={[styles.button, styles.buttonOpen]}
+              onPress={() => setModalVisible(true)}>
+              <Text style={styles.textStyle}>Add to list</Text>
+            </Pressable>
           </View>
         </View>
 
@@ -119,6 +120,26 @@ const HomeScreen = ({navigation}) => {
           </View>
         </ScrollView>
       </View>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <View style={styles.containerRow}>
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangeText}
+                value={text}
+                placeholder="add todo"
+              />
+            </View>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={hideModal}>
+              <Text style={styles.textStyle}>Add</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -135,6 +156,48 @@ function App() {
 }
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+    alignItems: 'center',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
   containerSticky: {
     position: 'absolute',
     bottom: 0,
@@ -146,9 +209,6 @@ const styles = StyleSheet.create({
   },
   container: {
     height: '100%',
-  },
-  button: {
-    width: 'auto',
   },
   titleStyle: {
     marginRight: 'auto',
