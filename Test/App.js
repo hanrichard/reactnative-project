@@ -98,7 +98,7 @@ const HomeScreen = ({navigation}) => {
             <Pressable
               style={[styles.button, styles.buttonOpen, styles.buttonContainer]}
               onPress={() => setModalVisible(true)}>
-              <Text style={styles.textStyle}>Add to list</Text>
+              <Text style={styles.textStyle}>Add todo item</Text>
             </Pressable>
           </View>
         </View>
