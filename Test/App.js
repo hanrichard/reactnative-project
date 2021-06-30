@@ -105,7 +105,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
 
-        <ScrollView style={styles.container} nestedScrollEnabled>
+        <View style={styles.container}>
           <View>
             <Button
               title="Go to Details"
@@ -121,14 +121,15 @@ const HomeScreen = ({navigation}) => {
             </View>
             <View style={styles.list}>
               <FlatList
+                scrollEnabled={true}
                 data={todo}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-                scrollEnabled={false}
+                // scrollEnabled={false}
               />
             </View>
           </View>
-        </ScrollView>
+        </View>
       </View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
