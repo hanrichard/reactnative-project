@@ -10,7 +10,6 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
-  ScrollView,
   LogBox,
   Modal,
   Pressable,
@@ -50,7 +49,6 @@ const HomeScreen = ({navigation}) => {
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
   const [modalVisible, setModalVisible] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   const onPress = val => {
     setTodo(todo.filter(item => item.id !== val));
@@ -68,10 +66,6 @@ const HomeScreen = ({navigation}) => {
 
   const cancel = () => {
     setModalVisible(!modalVisible);
-  };
-
-  const setToRefresh = () => {
-    setRefresh(true);
   };
 
   const Item = ({title, id}) => (
@@ -96,6 +90,7 @@ const HomeScreen = ({navigation}) => {
       <StatusBar barStyle="light-content" />
       {/* Content */}
       <View>
+        {/* Add to list */}
         <View style={styles.containerSticky}>
           <View style={styles.containerRow}>
             <Pressable
@@ -244,7 +239,6 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
   },
   sectionContainer: {
     paddingHorizontal: 24,
