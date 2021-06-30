@@ -94,6 +94,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
+      {/* Content */}
       <View>
         <View style={styles.containerSticky}>
           <View style={styles.containerRow}>
@@ -131,6 +132,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
       </View>
+      {/* Modal */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -149,6 +151,7 @@ const HomeScreen = ({navigation}) => {
                 onPress={hideModal}>
                 <Text style={styles.textStyle}>Add</Text>
               </Pressable>
+
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={cancel}>
