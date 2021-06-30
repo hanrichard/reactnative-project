@@ -50,6 +50,7 @@ const HomeScreen = ({navigation}) => {
   const [text, setText] = useState('');
   const [todo, setTodo] = useState(mockData);
   const [modalVisible, setModalVisible] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const onPress = val => {
     setTodo(todo.filter(item => item.id !== val));
@@ -67,6 +68,10 @@ const HomeScreen = ({navigation}) => {
 
   const cancel = () => {
     setModalVisible(!modalVisible);
+  };
+
+  const setToRefresh = () => {
+    setRefresh(true);
   };
 
   const Item = ({title, id}) => (
@@ -100,7 +105,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
 
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} nestedScrollEnabled>
           <View>
             <Button
               title="Go to Details"
