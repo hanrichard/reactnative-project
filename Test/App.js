@@ -35,6 +35,8 @@ const DetailsScreen = ({navigation, route}) => {
         title="Go to Details... again"
         onPress={() => navigation.push('Details')}
       />
+      <Text>route {JSON.stringify(route)}</Text>
+      <Text>navigation {JSON.stringify(navigation)}</Text>
     </View>
   );
 };
