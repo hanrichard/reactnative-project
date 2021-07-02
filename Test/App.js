@@ -88,47 +88,42 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView flex={1}>
       <StatusBar barStyle="light-content" />
-      {/* Content */}
-      <View>
-        {/* Add to list */}
-        <View style={styles.containerSticky}>
-          <View style={styles.containerRow}>
-            <Pressable
-              style={[styles.button, styles.buttonOpen, styles.buttonContainer]}
-              onPress={() => setModalVisible(true)}>
-              <Text style={styles.textStyle}>Add todo item</Text>
-            </Pressable>
-          </View>
-        </View>
 
-        <View style={styles.container}>
-          <View>
-            <Button
-              title="Go to Details"
-              onPress={() => {
-                navigation.navigate('Details', {
-                  itemId: 86,
-                  otherParam: 'anything you want here',
-                });
-              }}
-            />
-            <View style={styles.listHeading}>
-              <Text style={styles.listHeadingText}>Todo list</Text>
-            </View>
-            <View style={styles.list}>
-              <FlatList
-                scrollEnabled={true}
-                data={todo}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                // scrollEnabled={false}
-              />
-            </View>
-          </View>
+      {/* Add to list */}
+      <View style={styles.containerSticky}>
+        <View style={styles.containerRow}>
+          <Pressable
+            style={[styles.button, styles.buttonOpen, styles.buttonContainer]}
+            onPress={() => setModalVisible(true)}>
+            <Text style={styles.textStyle}>Add todo item</Text>
+          </Pressable>
         </View>
       </View>
+
+      <View flex={1}>
+        <Button
+          title="Go to Details"
+          onPress={() => {
+            navigation.navigate('Details', {
+              itemId: 86,
+              otherParam: 'anything you want here',
+            });
+          }}
+        />
+        <View style={styles.listHeading}>
+          <Text style={styles.listHeadingText}>Todo list</Text>
+        </View>
+
+        <FlatList
+          scrollEnabled={true}
+          data={todo}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
+
       {/* Modal */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
@@ -222,15 +217,14 @@ const styles = StyleSheet.create({
   },
   containerSticky: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     zIndex: 1,
     alignItems: 'center',
     paddingLeft: 10,
     paddingRight: 10,
   },
   container: {
-    height: '100%',
-    paddingBottom: 200,
+    paddingBottom: 220,
   },
   titleStyle: {
     marginRight: 'auto',
@@ -274,7 +268,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   list: {
-    paddingBottom: 50,
+    paddingBottom: 70,
+    // flex: 1,
   },
   listHeading: {
     alignItems: 'center',
