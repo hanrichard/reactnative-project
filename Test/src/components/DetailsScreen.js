@@ -4,12 +4,12 @@ import {Button, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
 
 const DetailsScreen = ({navigation, route}) => {
-  console.log(route);
   const mockData = [
     {id: uuid.v4(), title: 'test 1'},
     {id: uuid.v4(), title: 'test 2'},
     {id: uuid.v4(), title: 'test 3'},
   ];
+
   const defaultId = route.params.itemId || 0;
   const [id, setId] = useState(defaultId);
 
