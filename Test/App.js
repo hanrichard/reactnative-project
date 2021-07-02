@@ -10,7 +10,6 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
-  LogBox,
   Modal,
   Pressable,
 } from 'react-native';
@@ -80,12 +79,6 @@ const HomeScreen = ({navigation}) => {
   );
 
   const renderItem = ({item}) => <Item title={item.title} id={item.id} />;
-
-  React.useEffect(() => {
-    LogBox.ignoreLogs([
-      'VirtualizedLists should never be nested inside plain ScrollViews',
-    ]);
-  }, []);
 
   return (
     <SafeAreaView flex={1}>
