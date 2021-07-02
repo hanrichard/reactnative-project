@@ -75,8 +75,7 @@ const HomeScreen = ({navigation}) => {
           title="Go to Details"
           onPress={() => {
             navigation.navigate('Details', {
-              itemId: 86,
-              otherParam: 'anything you want here',
+              itemId: 0,
             });
           }}
         />
