@@ -118,30 +118,38 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {/* Modal */}
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <View style={styles.containerRow}>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
-                placeholder="add todo"
-              />
-            </View>
-            <View style={styles.buttonsContainer}>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={hideModal}>
-                <Text style={styles.textStyle}>Add</Text>
-              </Pressable>
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Hello World!</Text>
+              <View style={styles.containerRow}>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeText}
+                  value={text}
+                  placeholder="add todo"
+                />
+              </View>
+              <View style={styles.buttonsContainer}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={hideModal}>
+                  <Text style={styles.textStyle}>Add</Text>
+                </Pressable>
 
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={cancel}>
-                <Text style={styles.textStyle}>Cancel</Text>
-              </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={cancel}>
+                  <Text style={styles.textStyle}>Cancel</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </View>
